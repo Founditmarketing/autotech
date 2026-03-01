@@ -19,6 +19,8 @@ import {
 import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
 import { ServicesPage } from './pages/ServicesPage';
 import { AboutPage } from './pages/AboutPage';
+import { SalesPage } from './pages/SalesPage';
+import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'wireframe'>('wireframe');
@@ -74,6 +76,8 @@ export default function App() {
                   <Route index element={<WireframeView />} />
                   <Route path="services" element={<ServicesPage />} />
                   <Route path="about" element={<AboutPage />} />
+                  <Route path="sales" element={<SalesPage />} />
+                  <Route path="contact" element={<ContactPage />} />
                 </Route>
               </Routes>
             </motion.div>
@@ -287,16 +291,16 @@ function Layout() {
           <Link to="/services" className="hover:text-red-500 transition-colors">Services</Link>
           <Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link>
           <Link to="/services" className="hover:text-red-500 transition-colors">Towing</Link>
-          <a href="#" className="hover:text-red-500 transition-colors">Auto Sales</a>
+          <Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link>
         </div>
         <div className="hidden md:flex items-center gap-4">
           <div className="text-right">
             <div className="text-xs text-zinc-400 font-semibold uppercase tracking-wider">24/7 Dispatch</div>
             <div className="text-lg font-bold text-red-500">(318) 555-0198</div>
           </div>
-          <button className="bg-white text-zinc-950 px-6 py-2.5 rounded-md font-bold hover:bg-zinc-200 transition-colors">
+          <Link to="/contact" className="bg-white text-zinc-950 px-6 py-2.5 rounded-md font-bold hover:bg-zinc-200 transition-colors">
             Book Service
-          </button>
+          </Link>
         </div>
       </header>
 
@@ -321,16 +325,15 @@ function Layout() {
                 <li><Link to="/services" className="hover:text-red-500 transition-colors">Mechanical</Link></li>
                 <li><Link to="/services" className="hover:text-red-500 transition-colors">Collision Repair</Link></li>
                 <li><Link to="/services" className="hover:text-red-500 transition-colors">24/7 Towing</Link></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Auto Sales</a></li>
+                <li><Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Company</h4>
               <ul className="space-y-2">
-                <li><Link to="/about" className="hover:text-red-500 transition-colors">About Us</Link></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Privacy Policy</a></li>
+                <li><Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link></li>
+                <li><Link to="/contact" className="hover:text-red-500 transition-colors">Contact Us</Link></li>
+                <li><Link to="#" className="hover:text-red-500 transition-colors">Privacy Policy</Link></li>
               </ul>
             </div>
           </div>
@@ -483,9 +486,9 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">Pre-Owned Vehicles</h3>
                 <p className="text-zinc-600 text-sm mb-4 flex-1">Fully inspected, reliable pre-owned cars and trucks backed by our service guarantee.</p>
-                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <Link to="/sales" className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   View Inventory <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
+                </Link>
               </div>
             </div>
           </div>
