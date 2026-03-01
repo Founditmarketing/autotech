@@ -295,7 +295,7 @@ function WireframeView() {
         {/* Simulated high-def background */}
         <div className="absolute inset-0 opacity-40">
           <img
-            src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2574&auto=format&fit=crop"
+            src="/images/hero.png"
             alt="Auto Shop Background"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -371,7 +371,7 @@ function WireframeView() {
             {/* Silo 1 */}
             <div className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1000&auto=format&fit=crop" alt="Mechanical" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                <img src="/images/mechanical.png" alt="Mechanical" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <Wrench className="absolute bottom-4 left-4 w-8 h-8 text-white" />
               </div>
@@ -387,7 +387,7 @@ function WireframeView() {
             {/* Silo 2 */}
             <div className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1605810731468-18017364132b?q=80&w=1000&auto=format&fit=crop" alt="Collision" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                <img src="/images/collision.png" alt="Collision" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <ShieldCheck className="absolute bottom-4 left-4 w-8 h-8 text-white" />
               </div>
@@ -403,7 +403,7 @@ function WireframeView() {
             {/* Silo 3 */}
             <div className="group bg-red-600 text-white border border-red-700 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-red-800 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1542228262-3d663b306a53?q=80&w=1000&auto=format&fit=crop" alt="Towing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" />
+                <img src="/images/towing.png" alt="Towing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 to-transparent" />
                 <Truck className="absolute bottom-4 left-4 w-8 h-8 text-white" />
               </div>
@@ -419,7 +419,7 @@ function WireframeView() {
             {/* Silo 4 */}
             <div className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop" alt="Auto Sales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                <img src="/images/sales.png" alt="Auto Sales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <CarFront className="absolute bottom-4 left-4 w-8 h-8 text-white" />
               </div>
@@ -463,7 +463,7 @@ function WireframeView() {
               </div>
             </div>
             <div className="relative h-[500px] rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 border border-zinc-800">
-              <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1000&auto=format&fit=crop" alt="Mechanic Team" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="/images/legacy.png" alt="Mechanic Team" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent" />
             </div>
           </div>
