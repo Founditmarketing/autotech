@@ -21,6 +21,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { AboutPage } from './pages/AboutPage';
 import { SalesPage } from './pages/SalesPage';
 import { ContactPage } from './pages/ContactPage';
+import { TowingPage } from './pages/TowingPage';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'wireframe'>('wireframe');
@@ -78,6 +79,7 @@ export default function App() {
                   <Route path="about" element={<AboutPage />} />
                   <Route path="sales" element={<SalesPage />} />
                   <Route path="contact" element={<ContactPage />} />
+                  <Route path="towing" element={<TowingPage />} />
                 </Route>
               </Routes>
             </motion.div>
@@ -276,10 +278,10 @@ function Layout() {
           <AlertTriangle className="w-5 h-5" />
           Need a Tow?
         </div>
-        <button className="bg-white text-red-600 px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-sm">
+        <a href="tel:3185550198" className="bg-white text-red-600 px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-sm">
           <PhoneCall className="w-4 h-4" />
           Call 24/7
-        </button>
+        </a>
       </div>
 
       {/* Main Navigation */}
@@ -290,7 +292,7 @@ function Layout() {
         <div className="hidden md:flex items-center gap-8 font-medium text-sm">
           <Link to="/services" className="hover:text-red-500 transition-colors">Services</Link>
           <Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link>
-          <Link to="/services" className="hover:text-red-500 transition-colors">Towing</Link>
+          <Link to="/towing" className="hover:text-red-500 transition-colors text-red-400 font-bold uppercase tracking-wider">Towing</Link>
           <Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link>
         </div>
         <div className="hidden md:flex items-center gap-4">
@@ -324,7 +326,7 @@ function Layout() {
               <ul className="space-y-2">
                 <li><Link to="/services" className="hover:text-red-500 transition-colors">Mechanical</Link></li>
                 <li><Link to="/services" className="hover:text-red-500 transition-colors">Collision Repair</Link></li>
-                <li><Link to="/services" className="hover:text-red-500 transition-colors">24/7 Towing</Link></li>
+                <li><Link to="/towing" className="hover:text-red-500 transition-colors">24/7 Towing</Link></li>
                 <li><Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link></li>
               </ul>
             </div>
@@ -470,9 +472,9 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">24/7 Towing</h3>
                 <p className="text-red-100 text-sm mb-4 flex-1">Stranded? We have the largest fleet in Cenla ready to dispatch immediately to your location.</p>
-                <div className="flex items-center text-white font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <Link to="/towing" className="flex items-center text-white font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   Call Dispatch Now <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
+                </Link>
               </div>
             </div>
 
