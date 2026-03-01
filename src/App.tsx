@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  PhoneCall, 
-  Wrench, 
-  CarFront, 
-  Truck, 
-  ShieldCheck, 
-  TrendingUp, 
-  AlertTriangle, 
-  CheckCircle2, 
-  ArrowRight, 
-  BarChart3, 
-  Target, 
+import {
+  PhoneCall,
+  Wrench,
+  CarFront,
+  Truck,
+  ShieldCheck,
+  TrendingUp,
+  AlertTriangle,
+  CheckCircle2,
+  ArrowRight,
+  BarChart3,
+  Target,
   Search,
   MapPin,
   Clock,
@@ -31,13 +31,13 @@ export default function App() {
             <span className="font-bold tracking-tight">Found It Marketing</span>
           </div>
           <div className="flex gap-1 bg-zinc-900 p-1 rounded-lg border border-zinc-800">
-            <button 
+            <button
               onClick={() => setActiveTab('pitch')}
               className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'pitch' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'}`}
             >
               The Pitch & ROI
             </button>
-            <button 
+            <button
               onClick={() => setActiveTab('wireframe')}
               className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'wireframe' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'}`}
             >
@@ -49,7 +49,7 @@ export default function App() {
 
       <AnimatePresence mode="wait">
         {activeTab === 'pitch' ? (
-          <motion.div 
+          <motion.div
             key="pitch"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export default function App() {
             <PitchView />
           </motion.div>
         ) : (
-          <motion.div 
+          <motion.div
             key="wireframe"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ function PitchView() {
           Critical Business Rescue Operation
         </div>
         <h1 className="text-5xl sm:text-7xl font-bold tracking-tighter mb-6 leading-[1.1]">
-          Stop Bleeding Leads in Cenla. <br/>
+          Stop Bleeding Leads in Cenla. <br />
           <span className="text-zinc-500">Start Dominating.</span>
         </h1>
         <p className="text-xl text-zinc-400 max-w-3xl leading-relaxed">
@@ -148,7 +148,7 @@ function PitchView() {
             <h3 className="text-xl font-semibold">Auto Tech (Pineville / Alexandria, LA)</h3>
             <p className="text-zinc-400 text-sm mt-1">Market Analysis & Opportunity Assessment</p>
           </div>
-          
+
           <div className="divide-y divide-zinc-800">
             {/* GLS */}
             <div className="p-6 grid md:grid-cols-3 gap-4">
@@ -156,7 +156,7 @@ function PitchView() {
               <div className="md:col-span-2 space-y-2">
                 <div className="flex justify-between items-center bg-zinc-950 p-3 rounded-lg border border-zinc-800">
                   <span className="text-zinc-400">Status</span>
-                  <span className="text-emerald-400 font-medium flex items-center gap-1"><CheckCircle2 className="w-4 h-4"/> Available in target area</span>
+                  <span className="text-emerald-400 font-medium flex items-center gap-1"><CheckCircle2 className="w-4 h-4" /> Available in target area</span>
                 </div>
                 <div className="flex justify-between items-center bg-zinc-950 p-3 rounded-lg border border-zinc-800">
                   <span className="text-zinc-400">Vertical Checks</span>
@@ -294,9 +294,9 @@ function WireframeView() {
       <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-zinc-900">
         {/* Simulated high-def background */}
         <div className="absolute inset-0 opacity-40">
-          <img 
-            src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2574&auto=format&fit=crop" 
-            alt="Auto Shop Background" 
+          <img
+            src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2574&auto=format&fit=crop"
+            alt="Auto Shop Background"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -310,7 +310,7 @@ function WireframeView() {
               Central Louisiana's #1 Auto Center
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-white uppercase leading-[0.9] tracking-tight mb-6">
-              We Fix It Right. <br/>
+              We Fix It Right. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">The First Time.</span>
             </h1>
             <p className="text-xl text-zinc-300 mb-10 max-w-xl font-medium">
@@ -435,14 +435,77 @@ function WireframeView() {
         </div>
       </section>
 
+      {/* The Auto Tech Legacy Section */}
+      <section className="py-24 bg-zinc-900 text-white border-y border-zinc-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-800 text-zinc-300 text-sm font-bold uppercase tracking-wider mb-6 rounded-sm">
+                <Target className="w-4 h-4 text-red-500" />
+                Our Legacy
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-6">40 Years.<br /><span className="text-red-500">3 Generations.</span><br />Zero Excuses.</h2>
+              <p className="text-lg text-zinc-400 mb-6 font-medium">
+                Since 1984, Auto Tech has been the backbone of Central Louisiana's automotive repair industry. We aren't a massive corporate chain, and we aren't a fly-by-night garage. We are a family-owned institution built on trust, grit, and doing the job right.
+              </p>
+              <p className="text-lg text-zinc-400 mb-8">
+                When your car breaks down or you're stranded on the side of Highway 28, you don't need a middleman. You need the experts who have been rescuing and repairing vehicles in this community for over four decades.
+              </p>
+              <div className="flex gap-4">
+                <div className="bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex-1">
+                  <div className="text-3xl font-black text-white mb-1">40+</div>
+                  <div className="text-sm text-zinc-500 font-medium uppercase">Years in Business</div>
+                </div>
+                <div className="bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex-1">
+                  <div className="text-3xl font-black text-white mb-1">24/7</div>
+                  <div className="text-sm text-zinc-500 font-medium uppercase">Dispatch Active</div>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-[500px] rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 border border-zinc-800">
+              <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1000&auto=format&fit=crop" alt="Mechanic Team" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-zinc-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-zinc-950 mb-4">Don't Take Our Word For It</h2>
+            <p className="text-lg text-zinc-600 max-w-2xl mx-auto">See why Central Louisiana trusts Auto Tech with their most valuable assets.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Michael R.', role: 'Local Resident', text: 'Stranded at 2 AM on a Sunday. Auto Tech dispatch answered immediately and had a tow truck to me in 20 minutes. Incredible service.' },
+              { name: 'Sarah T.', role: 'Business Owner', text: 'They handle our entire commercial fleet. Honest pricing, no surprise fees, and they always get the mechanical work done on time.' },
+              { name: 'David W.', role: 'Recent Customer', text: 'Had major front-end collision damage. The collision center restored my truck so perfectly you can\'t even tell it was in a wreck. 10/10.' }
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-white border border-zinc-200 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex text-yellow-500 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <svg key={j} className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                  ))}
+                </div>
+                <p className="text-zinc-600 mb-6 italic">"{testimonial.text}"</p>
+                <div className="font-bold text-zinc-950">{testimonial.name}</div>
+                <div className="text-sm text-zinc-500">{testimonial.role}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Location & Contact Section */}
-      <section className="py-24 bg-zinc-950 text-white">
+      <section className="py-24 bg-zinc-950 text-white border-t border-zinc-800">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-black uppercase tracking-tight mb-6">Find Our Shop</h2>
               <p className="text-zinc-400 mb-8 max-w-md">Located conveniently in the heart of Cenla, equipped to handle any of your vehicle's needs.</p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
@@ -450,7 +513,7 @@ function WireframeView() {
                   </div>
                   <div>
                     <h4 className="font-bold text-lg">Auto Tech Facilities</h4>
-                    <p className="text-zinc-400 mt-1">1234 Mechanics Way<br/>Alexandria, LA 71301</p>
+                    <p className="text-zinc-400 mt-1">4624 Highway 28 East<br />Pineville, LA 71360</p>
                   </div>
                 </div>
 
@@ -460,7 +523,7 @@ function WireframeView() {
                   </div>
                   <div>
                     <h4 className="font-bold text-lg">Contact Us</h4>
-                    <p className="text-zinc-400 mt-1">Main: (318) 555-0100<br/>24/7 Towing: (318) 555-0198</p>
+                    <p className="text-zinc-400 mt-1">Main: (318) 555-0100<br />24/7 Towing: (318) 555-0198</p>
                   </div>
                 </div>
 
@@ -470,21 +533,24 @@ function WireframeView() {
                   </div>
                   <div>
                     <h4 className="font-bold text-lg">Hours of Operation</h4>
-                    <p className="text-zinc-400 mt-1">Mon - Fri: 7:30 AM - 5:30 PM<br/>Towing: 24/7/365</p>
+                    <p className="text-zinc-400 mt-1">Mon - Fri: 8:00 AM - 5:00 PM<br />Towing: 24/7/365</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Faux Map / Contact Image */}
-            <div className="relative h-[400px] rounded-2xl overflow-hidden border border-zinc-800">
-              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop" alt="Location Map" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-zinc-950/20" />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/40 animate-pulse">
-                  <Target className="w-8 h-8 text-white" />
-                </div>
-              </div>
+            {/* Interactive Map */}
+            <div className="relative h-[400px] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 group">
+              <iframe
+                src="https://maps.google.com/maps?q=Auto%20Tech%204624%20Highway%2028%20East%20Pineville%20LA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="grayscale-[0.5] contrast-125 opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+              ></iframe>
             </div>
           </div>
         </div>
