@@ -19,12 +19,12 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'pitch' | 'wireframe'>('pitch');
+  const [activeTab, setActiveTab] = useState<'pitch' | 'wireframe'>('wireframe'); // Default to wireframe
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-emerald-500/30">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+      {/* Navigation - Hidden for live website mode */}
+      <nav className="hidden sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Target className="w-6 h-6 text-emerald-500" />
@@ -64,7 +64,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="pb-24 bg-white text-zinc-900"
+            className="bg-zinc-50 text-zinc-900" /* removed pb-24 for footer */
           >
             <WireframeView />
           </motion.div>
@@ -434,6 +434,97 @@ function WireframeView() {
           </div>
         </div>
       </section>
+
+      {/* Location & Contact Section */}
+      <section className="py-24 bg-zinc-950 text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl font-black uppercase tracking-tight mb-6">Find Our Shop</h2>
+              <p className="text-zinc-400 mb-8 max-w-md">Located conveniently in the heart of Cenla, equipped to handle any of your vehicle's needs.</p>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
+                    <MapPin className="w-6 h-6 text-red-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg">Auto Tech Facilities</h4>
+                    <p className="text-zinc-400 mt-1">1234 Mechanics Way<br/>Alexandria, LA 71301</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
+                    <PhoneCall className="w-6 h-6 text-red-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg">Contact Us</h4>
+                    <p className="text-zinc-400 mt-1">Main: (318) 555-0100<br/>24/7 Towing: (318) 555-0198</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
+                    <Clock className="w-6 h-6 text-red-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg">Hours of Operation</h4>
+                    <p className="text-zinc-400 mt-1">Mon - Fri: 7:30 AM - 5:30 PM<br/>Towing: 24/7/365</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Faux Map / Contact Image */}
+            <div className="relative h-[400px] rounded-2xl overflow-hidden border border-zinc-800">
+              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop" alt="Location Map" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <div className="absolute inset-0 bg-zinc-950/20" />
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/40 animate-pulse">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-zinc-900 text-zinc-400 py-12 border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div className="md:col-span-2">
+              <div className="text-2xl font-black tracking-tighter uppercase italic text-white mb-4">
+                Auto Tech
+              </div>
+              <p className="max-w-md">Central Louisiana's most trusted full-service automotive center. Since 1984, our family has been taking care of yours on the road.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Services</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-red-500 transition-colors">Mechanical</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Collision Repair</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">24/7 Towing</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Auto Sales</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Company</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-red-500 transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm">
+            <p>&copy; {new Date().getFullYear()} Auto Tech. All rights reserved.</p>
+            <p className="mt-2 md:mt-0 flex items-center gap-2">Built with <Target className="w-4 h-4 text-red-500" /> by Found It Marketing</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
