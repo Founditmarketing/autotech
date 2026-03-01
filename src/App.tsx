@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   PhoneCall,
@@ -16,7 +16,7 @@ import {
   MapPin,
   Clock,
 } from 'lucide-react';
-import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Outlet, useLocation } from 'react-router-dom';
 import { MechanicalPage } from './pages/MechanicalPage';
 import { CollisionPage } from './pages/CollisionPage';
 import { AboutPage } from './pages/AboutPage';
@@ -24,11 +24,22 @@ import { SalesPage } from './pages/SalesPage';
 import { ContactPage } from './pages/ContactPage';
 import { TowingPage } from './pages/TowingPage';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<'pitch' | 'wireframe'>('wireframe');
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-emerald-500/30">
         {/* Navigation - Hidden for live website mode */}
         <nav className="hidden sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
@@ -434,7 +445,7 @@ function WireframeView() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Silo 1 */}
-            <div className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+            <Link to="/mechanical" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
                 <img src="/images/mechanical.png" alt="Mechanical" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -443,14 +454,14 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">Mechanical Repair</h3>
                 <p className="text-zinc-600 text-sm mb-4 flex-1">Full diagnostics, engine repair, brakes, AC, and routine maintenance by certified techs.</p>
-                <Link to="/mechanical" className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   Schedule Service <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Silo 2 */}
-            <div className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+            <Link to="/collision" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
                 <img src="/images/collision.png" alt="Collision" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -459,14 +470,14 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">Collision Center</h3>
                 <p className="text-zinc-600 text-sm mb-4 flex-1">Major body work, frame straightening, and flawless paint matching. We work with all insurance.</p>
-                <Link to="/collision" className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   Get an Estimate <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Silo 3 */}
-            <div className="group bg-red-600 text-white border border-red-700 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+            <Link to="/towing" className="group bg-red-600 text-white border border-red-700 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
               <div className="h-48 bg-red-800 relative overflow-hidden">
                 <img src="/images/towing.png" alt="Towing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 to-transparent" />
@@ -475,14 +486,14 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">24/7 Towing</h3>
                 <p className="text-red-100 text-sm mb-4 flex-1">Stranded? We have the largest fleet in Cenla ready to dispatch immediately to your location.</p>
-                <Link to="/towing" className="flex items-center text-white font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <div className="flex items-center text-white font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   Call Dispatch Now <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Silo 4 */}
-            <div className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+            <Link to="/sales" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
                 <img src="/images/sales.png" alt="Auto Sales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -491,11 +502,11 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">Pre-Owned Vehicles</h3>
                 <p className="text-zinc-600 text-sm mb-4 flex-1">Fully inspected, reliable pre-owned cars and trucks backed by our service guarantee.</p>
-                <Link to="/sales" className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   View Inventory <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
