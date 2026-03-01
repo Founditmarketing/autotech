@@ -17,7 +17,8 @@ import {
   Clock,
 } from 'lucide-react';
 import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
-import { ServicesPage } from './pages/ServicesPage';
+import { MechanicalPage } from './pages/MechanicalPage';
+import { CollisionPage } from './pages/CollisionPage';
 import { AboutPage } from './pages/AboutPage';
 import { SalesPage } from './pages/SalesPage';
 import { ContactPage } from './pages/ContactPage';
@@ -75,7 +76,8 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Layout />}>
                   <Route index element={<WireframeView />} />
-                  <Route path="services" element={<ServicesPage />} />
+                  <Route path="mechanical" element={<MechanicalPage />} />
+                  <Route path="collision" element={<CollisionPage />} />
                   <Route path="about" element={<AboutPage />} />
                   <Route path="sales" element={<SalesPage />} />
                   <Route path="contact" element={<ContactPage />} />
@@ -290,7 +292,8 @@ function Layout() {
           Auto Tech
         </Link>
         <div className="hidden md:flex items-center gap-8 font-medium text-sm">
-          <Link to="/services" className="hover:text-red-500 transition-colors">Services</Link>
+          <Link to="/mechanical" className="hover:text-red-500 transition-colors">Mechanical</Link>
+          <Link to="/collision" className="hover:text-red-500 transition-colors">Collision</Link>
           <Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link>
           <Link to="/towing" className="hover:text-red-500 transition-colors text-red-400 font-bold uppercase tracking-wider">Towing</Link>
           <Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link>
@@ -324,8 +327,8 @@ function Layout() {
             <div>
               <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Services</h4>
               <ul className="space-y-2">
-                <li><Link to="/services" className="hover:text-red-500 transition-colors">Mechanical</Link></li>
-                <li><Link to="/services" className="hover:text-red-500 transition-colors">Collision Repair</Link></li>
+                <li><Link to="/mechanical" className="hover:text-red-500 transition-colors">Mechanical</Link></li>
+                <li><Link to="/collision" className="hover:text-red-500 transition-colors">Collision Repair</Link></li>
                 <li><Link to="/towing" className="hover:text-red-500 transition-colors">24/7 Towing</Link></li>
                 <li><Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link></li>
               </ul>
@@ -379,14 +382,14 @@ function WireframeView() {
               From major collision repair to 24/7 emergency towing. Don't trust your vehicle to just anyone. Trust the family that's been doing it since 1984.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg shadow-red-600/20">
+              <Link to="/towing" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg shadow-red-600/20">
                 <PhoneCall className="w-6 h-6" />
                 24/7 Emergency Tow
-              </button>
-              <button className="bg-white hover:bg-zinc-100 text-zinc-950 px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all">
+              </Link>
+              <Link to="/contact" className="bg-white hover:bg-zinc-100 text-zinc-950 px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all">
                 <Wrench className="w-6 h-6" />
                 Book Shop Service
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -440,9 +443,9 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">Mechanical Repair</h3>
                 <p className="text-zinc-600 text-sm mb-4 flex-1">Full diagnostics, engine repair, brakes, AC, and routine maintenance by certified techs.</p>
-                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <Link to="/mechanical" className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   Schedule Service <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
+                </Link>
               </div>
             </div>
 
@@ -456,9 +459,9 @@ function WireframeView() {
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-2">Collision Center</h3>
                 <p className="text-zinc-600 text-sm mb-4 flex-1">Major body work, frame straightening, and flawless paint matching. We work with all insurance.</p>
-                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                <Link to="/collision" className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
                   Get an Estimate <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
+                </Link>
               </div>
             </div>
 
