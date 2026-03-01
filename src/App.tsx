@@ -289,77 +289,80 @@ function Layout() {
 
   return (
     <div className="w-full font-sans">
-      {/* Sticky Mobile-First Emergency Header */}
-      <div className="bg-red-600 text-white py-3 px-4 sticky top-16 z-40 shadow-md flex justify-between items-center md:hidden">
-        <div className="font-bold flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5" />
-          Need a Tow?
-        </div>
-        <a href="tel:3185550198" className="bg-white text-red-600 px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-sm">
-          <PhoneCall className="w-4 h-4" />
-          Call 24/7
-        </a>
-      </div>
-
-      {/* Main Navigation */}
-      <header className="bg-zinc-950 text-white py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 md:top-auto z-50">
-        <Link to="/" className="text-2xl font-black tracking-tighter uppercase italic hover:text-red-500 transition-colors">
-          Auto Tech
-        </Link>
-        <div className="hidden md:flex items-center gap-8 font-medium text-sm">
-          <Link to="/mechanical" className="hover:text-red-500 transition-colors">Mechanical</Link>
-          <Link to="/collision" className="hover:text-red-500 transition-colors">Collision</Link>
-          <Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link>
-          <Link to="/towing" className="hover:text-red-500 transition-colors text-red-400 font-bold uppercase tracking-wider">Towing</Link>
-          <Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link>
-        </div>
-        <div className="hidden md:flex items-center gap-4">
-          <div className="text-right">
-            <div className="text-xs text-zinc-400 font-semibold uppercase tracking-wider">24/7 Dispatch</div>
-            <div className="text-lg font-bold text-red-500">(318) 555-0198</div>
+      {/* Unified Sticky Header Container */}
+      <header className="sticky top-0 z-50 w-full flex flex-col shadow-md">
+        {/* Mobile-First Emergency Header */}
+        <div className="bg-red-600 text-white py-3 px-4 flex justify-between items-center md:hidden w-full">
+          <div className="font-bold flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5" />
+            Need a Tow?
           </div>
-          <Link to="/contact" className="bg-white text-zinc-950 px-6 py-2.5 rounded-md font-bold hover:bg-zinc-200 transition-colors">
-            Book Service
-          </Link>
+          <a href="tel:3185550198" className="bg-white text-red-600 px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-sm">
+            <PhoneCall className="w-4 h-4" />
+            Call 24/7
+          </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </header>
-
-      {/* Mobile Navigation Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden"
-          >
-            <div className="px-6 py-4 flex flex-col gap-4">
-              <Link to="/mechanical" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Mechanical</Link>
-              <Link to="/collision" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Collision</Link>
-              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">About Legacy</Link>
-              <Link to="/towing" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-red-400 uppercase tracking-wider">Towing</Link>
-              <Link to="/sales" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Auto Sales</Link>
-              <div className="pt-4 mt-2 border-t border-zinc-800 flex flex-col gap-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 font-semibold uppercase tracking-wider text-xs">24/7 Dispatch</span>
-                  <a href="tel:3185550198" className="font-bold text-red-500">(318) 555-0198</a>
-                </div>
-                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-white text-center text-zinc-950 px-6 py-3 rounded-md font-bold hover:bg-zinc-200 transition-colors w-full">
-                  Book Service
-                </Link>
-              </div>
+        {/* Main Navigation */}
+        <div className="bg-zinc-950 text-white py-4 px-6 md:px-12 flex justify-between items-center w-full border-b border-zinc-800">
+          <Link to="/" className="text-2xl font-black tracking-tighter uppercase italic hover:text-red-500 transition-colors">
+            Auto Tech
+          </Link>
+          <div className="hidden md:flex items-center gap-8 font-medium text-sm">
+            <Link to="/mechanical" className="hover:text-red-500 transition-colors">Mechanical</Link>
+            <Link to="/collision" className="hover:text-red-500 transition-colors">Collision</Link>
+            <Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link>
+            <Link to="/towing" className="hover:text-red-500 transition-colors text-red-400 font-bold uppercase tracking-wider">Towing</Link>
+            <Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link>
+          </div>
+          <div className="hidden md:flex items-center gap-4">
+            <div className="text-right">
+              <div className="text-xs text-zinc-400 font-semibold uppercase tracking-wider">24/7 Dispatch</div>
+              <div className="text-lg font-bold text-red-500">(318) 555-0198</div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Link to="/contact" className="bg-white text-zinc-950 px-6 py-2.5 rounded-md font-bold hover:bg-zinc-200 transition-colors">
+              Book Service
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden relative z-40 w-full"
+            >
+              <div className="px-6 py-4 flex flex-col gap-4">
+                <Link to="/mechanical" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Mechanical</Link>
+                <Link to="/collision" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Collision</Link>
+                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">About Legacy</Link>
+                <Link to="/towing" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-red-400 uppercase tracking-wider">Towing</Link>
+                <Link to="/sales" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Auto Sales</Link>
+                <div className="pt-4 mt-2 border-t border-zinc-800 flex flex-col gap-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-zinc-400 font-semibold uppercase tracking-wider text-xs">24/7 Dispatch</span>
+                    <a href="tel:3185550198" className="font-bold text-red-500">(318) 555-0198</a>
+                  </div>
+                  <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-white text-center text-zinc-950 px-6 py-3 rounded-md font-bold hover:bg-zinc-200 transition-colors w-full">
+                    Book Service
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
 
       {/* Page Content */}
       <main>
@@ -486,7 +489,7 @@ function WireframeView() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Silo 1 */}
-            <Link to="/mechanical" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
+            <Link to="/mechanical" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
                 <img src="/images/mechanical.png" alt="Mechanical" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -502,7 +505,7 @@ function WireframeView() {
             </Link>
 
             {/* Silo 2 */}
-            <Link to="/collision" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
+            <Link to="/collision" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
                 <img src="/images/collision.png" alt="Collision" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -518,7 +521,7 @@ function WireframeView() {
             </Link>
 
             {/* Silo 3 */}
-            <Link to="/towing" className="group bg-red-600 text-white border border-red-700 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
+            <Link to="/towing" className="group bg-red-600 text-white border border-red-700 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-red-800 relative overflow-hidden">
                 <img src="/images/towing.png" alt="Towing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 to-transparent" />
@@ -534,7 +537,7 @@ function WireframeView() {
             </Link>
 
             {/* Silo 4 */}
-            <Link to="/sales" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col block">
+            <Link to="/sales" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
               <div className="h-48 bg-zinc-200 relative overflow-hidden">
                 <img src="/images/sales.png" alt="Auto Sales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
