@@ -1,5 +1,5 @@
 import React from 'react';
-import { Truck, ShieldCheck, Wrench, ArrowRight, Target, CarFront, CheckCircle2 } from 'lucide-react';
+import { Truck, ShieldCheck, Wrench, ArrowRight, Target, CarFront, CheckCircle2, PhoneCall } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function ServicesPage() {
