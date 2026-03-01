@@ -15,62 +15,72 @@ import {
   Search,
   MapPin,
   Clock,
-  ChevronDown
 } from 'lucide-react';
+import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
+import { ServicesPage } from './pages/ServicesPage';
+import { AboutPage } from './pages/AboutPage';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'pitch' | 'wireframe'>('wireframe'); // Default to wireframe
+  const [activeTab, setActiveTab] = useState<'pitch' | 'wireframe'>('wireframe');
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-emerald-500/30">
-      {/* Navigation - Hidden for live website mode */}
-      <nav className="hidden sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Target className="w-6 h-6 text-emerald-500" />
-            <span className="font-bold tracking-tight">Found It Marketing</span>
+    <BrowserRouter>
+      <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-emerald-500/30">
+        {/* Navigation - Hidden for live website mode */}
+        <nav className="hidden sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Target className="w-6 h-6 text-emerald-500" />
+              <span className="font-bold tracking-tight">Found It Marketing</span>
+            </div>
+            <div className="flex gap-1 bg-zinc-900 p-1 rounded-lg border border-zinc-800">
+              <button
+                onClick={() => setActiveTab('pitch')}
+                className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'pitch' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'}`}
+              >
+                The Pitch & ROI
+              </button>
+              <button
+                onClick={() => setActiveTab('wireframe')}
+                className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'wireframe' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'}`}
+              >
+                Live Wireframe
+              </button>
+            </div>
           </div>
-          <div className="flex gap-1 bg-zinc-900 p-1 rounded-lg border border-zinc-800">
-            <button
-              onClick={() => setActiveTab('pitch')}
-              className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'pitch' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'}`}
-            >
-              The Pitch & ROI
-            </button>
-            <button
-              onClick={() => setActiveTab('wireframe')}
-              className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'wireframe' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'}`}
-            >
-              Live Wireframe
-            </button>
-          </div>
-        </div>
-      </nav>
+        </nav>
 
-      <AnimatePresence mode="wait">
-        {activeTab === 'pitch' ? (
-          <motion.div
-            key="pitch"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="pb-24"
-          >
-            <PitchView />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="wireframe"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="bg-zinc-50 text-zinc-900" /* removed pb-24 for footer */
-          >
-            <WireframeView />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        <AnimatePresence mode="wait">
+          {activeTab === 'pitch' ? (
+            <motion.div
+              key="pitch"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="pb-24"
+            >
+              <PitchView />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="wireframe"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="bg-zinc-50 text-zinc-900" /* removed pb-24 for footer */
+            >
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<WireframeView />} />
+                  <Route path="services" element={<ServicesPage />} />
+                  <Route path="about" element={<AboutPage />} />
+                </Route>
+              </Routes>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </BrowserRouter>
   );
 }
 
@@ -253,7 +263,7 @@ function PitchView() {
   );
 }
 
-function WireframeView() {
+function Layout() {
   return (
     <div className="w-full font-sans">
       {/* Sticky Mobile-First Emergency Header */}
@@ -269,14 +279,14 @@ function WireframeView() {
       </div>
 
       {/* Main Navigation */}
-      <header className="bg-zinc-950 text-white py-4 px-6 md:px-12 flex justify-between items-center">
-        <div className="text-2xl font-black tracking-tighter uppercase italic">
+      <header className="bg-zinc-950 text-white py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 md:top-auto z-50">
+        <Link to="/" className="text-2xl font-black tracking-tighter uppercase italic hover:text-red-500 transition-colors">
           Auto Tech
-        </div>
+        </Link>
         <div className="hidden md:flex items-center gap-8 font-medium text-sm">
-          <a href="#" className="hover:text-red-500 transition-colors">Mechanical</a>
-          <a href="#" className="hover:text-red-500 transition-colors">Collision</a>
-          <a href="#" className="hover:text-red-500 transition-colors">Towing</a>
+          <Link to="/services" className="hover:text-red-500 transition-colors">Services</Link>
+          <Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link>
+          <Link to="/services" className="hover:text-red-500 transition-colors">Towing</Link>
           <a href="#" className="hover:text-red-500 transition-colors">Auto Sales</a>
         </div>
         <div className="hidden md:flex items-center gap-4">
@@ -290,6 +300,53 @@ function WireframeView() {
         </div>
       </header>
 
+      {/* Page Content */}
+      <main>
+        <Outlet />
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-zinc-900 text-zinc-400 py-12 border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div className="md:col-span-2">
+              <Link to="/" className="text-2xl font-black tracking-tighter uppercase italic text-white mb-4 block hover:text-red-500 transition-colors">
+                Auto Tech
+              </Link>
+              <p className="max-w-md">Central Louisiana's most trusted full-service automotive center. Since 1984, our family has been taking care of yours on the road.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Services</h4>
+              <ul className="space-y-2">
+                <li><Link to="/services" className="hover:text-red-500 transition-colors">Mechanical</Link></li>
+                <li><Link to="/services" className="hover:text-red-500 transition-colors">Collision Repair</Link></li>
+                <li><Link to="/services" className="hover:text-red-500 transition-colors">24/7 Towing</Link></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Auto Sales</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Company</h4>
+              <ul className="space-y-2">
+                <li><Link to="/about" className="hover:text-red-500 transition-colors">About Us</Link></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-red-500 transition-colors">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm">
+            <p>&copy; {new Date().getFullYear()} Auto Tech. All rights reserved.</p>
+            <p className="mt-2 md:mt-0 flex items-center gap-2">Built with <Target className="w-4 h-4 text-red-500" /> by Found It Marketing</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function WireframeView() {
+  return (
+    <>
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-zinc-900">
         {/* Simulated high-def background */}
@@ -555,42 +612,6 @@ function WireframeView() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-zinc-900 text-zinc-400 py-12 border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
-            <div className="md:col-span-2">
-              <div className="text-2xl font-black tracking-tighter uppercase italic text-white mb-4">
-                Auto Tech
-              </div>
-              <p className="max-w-md">Central Louisiana's most trusted full-service automotive center. Since 1984, our family has been taking care of yours on the road.</p>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Services</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-red-500 transition-colors">Mechanical</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Collision Repair</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">24/7 Towing</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Auto Sales</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Company</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-red-500 transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-red-500 transition-colors">Privacy Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm">
-            <p>&copy; {new Date().getFullYear()} Auto Tech. All rights reserved.</p>
-            <p className="mt-2 md:mt-0 flex items-center gap-2">Built with <Target className="w-4 h-4 text-red-500" /> by Found It Marketing</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }
