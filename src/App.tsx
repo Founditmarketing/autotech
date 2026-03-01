@@ -15,6 +15,8 @@ import {
   Search,
   MapPin,
   Clock,
+  Menu,
+  X
 } from 'lucide-react';
 import { BrowserRouter, Routes, Route, Link, Outlet, useLocation } from 'react-router-dom';
 import { MechanicalPage } from './pages/MechanicalPage';
@@ -283,6 +285,8 @@ function PitchView() {
 }
 
 function Layout() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="w-full font-sans">
       {/* Sticky Mobile-First Emergency Header */}
@@ -318,7 +322,44 @@ function Layout() {
             Book Service
           </Link>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </header>
+
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden"
+          >
+            <div className="px-6 py-4 flex flex-col gap-4">
+              <Link to="/mechanical" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Mechanical</Link>
+              <Link to="/collision" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Collision</Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">About Legacy</Link>
+              <Link to="/towing" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-red-400 uppercase tracking-wider">Towing</Link>
+              <Link to="/sales" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Auto Sales</Link>
+              <div className="pt-4 mt-2 border-t border-zinc-800 flex flex-col gap-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 font-semibold uppercase tracking-wider text-xs">24/7 Dispatch</span>
+                  <a href="tel:3185550198" className="font-bold text-red-500">(318) 555-0198</a>
+                </div>
+                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-white text-center text-zinc-950 px-6 py-3 rounded-md font-bold hover:bg-zinc-200 transition-colors w-full">
+                  Book Service
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Page Content */}
       <main>
