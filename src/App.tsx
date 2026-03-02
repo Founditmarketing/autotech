@@ -18,13 +18,15 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { BrowserRouter, Routes, Route, Link, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Outlet, useLocation, useOutlet } from 'react-router-dom';
 import { MechanicalPage } from './pages/MechanicalPage';
 import { CollisionPage } from './pages/CollisionPage';
 import { AboutPage } from './pages/AboutPage';
 import { SalesPage } from './pages/SalesPage';
 import { ContactPage } from './pages/ContactPage';
 import { TowingPage } from './pages/TowingPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { Reveal } from './components/Reveal';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,6 +36,25 @@ function ScrollToTop() {
   }, [pathname]);
 
   return null;
+}
+
+function AnimatedOutlet() {
+  const location = useLocation();
+  const element = useOutlet();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -15 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        {element}
+      </motion.div>
+    </AnimatePresence>
+  );
 }
 
 export default function App() {
@@ -95,6 +116,7 @@ export default function App() {
                   <Route path="sales" element={<SalesPage />} />
                   <Route path="contact" element={<ContactPage />} />
                   <Route path="towing" element={<TowingPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
             </motion.div>
@@ -366,7 +388,7 @@ function Layout() {
 
       {/* Page Content */}
       <main>
-        <Outlet />
+        <AnimatedOutlet />
       </main>
 
       {/* Footer */}
@@ -424,170 +446,185 @@ function WireframeView() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-600 text-white text-sm font-bold uppercase tracking-wider mb-6">
-              <Truck className="w-4 h-4" />
-              Central Louisiana's #1 Auto Center
+          <Reveal delay={0.2} width="100%">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-600 text-white text-sm font-bold uppercase tracking-wider mb-6">
+                <Truck className="w-4 h-4" />
+                Central Louisiana's #1 Auto Center
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-white uppercase leading-[0.9] tracking-tight mb-6">
+                We Fix It Right. <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">The First Time.</span>
+              </h1>
+              <p className="text-xl text-zinc-300 mb-10 max-w-xl font-medium">
+                From major collision repair to 24/7 emergency towing. Don't trust your vehicle to just anyone. Trust the family that's been doing it since 1984.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/towing" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg shadow-red-600/20">
+                  <PhoneCall className="w-6 h-6" />
+                  24/7 Emergency Tow
+                </Link>
+                <Link to="/contact" className="bg-white hover:bg-zinc-100 text-zinc-950 px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all">
+                  <Wrench className="w-6 h-6" />
+                  Book Shop Service
+                </Link>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white uppercase leading-[0.9] tracking-tight mb-6">
-              We Fix It Right. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">The First Time.</span>
-            </h1>
-            <p className="text-xl text-zinc-300 mb-10 max-w-xl font-medium">
-              From major collision repair to 24/7 emergency towing. Don't trust your vehicle to just anyone. Trust the family that's been doing it since 1984.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/towing" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg shadow-red-600/20">
-                <PhoneCall className="w-6 h-6" />
-                24/7 Emergency Tow
-              </Link>
-              <Link to="/contact" className="bg-white hover:bg-zinc-100 text-zinc-950 px-8 py-4 rounded-md font-black text-lg uppercase tracking-wide flex items-center justify-center gap-3 transition-all">
-                <Wrench className="w-6 h-6" />
-                Book Shop Service
-              </Link>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* The Trust Bar */}
       <section className="bg-zinc-950 text-white py-8 border-y border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
-            <div className="flex items-center gap-4 md:justify-center pt-4 md:pt-0">
-              <ShieldCheck className="w-10 h-10 text-red-500 shrink-0" />
-              <div>
-                <div className="font-bold text-lg">Serving Cenla Since 1984</div>
-                <div className="text-zinc-400 text-sm">40 Years of Proven Trust</div>
+        <Reveal>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+              <div className="flex items-center gap-4 md:justify-center pt-4 md:pt-0">
+                <ShieldCheck className="w-10 h-10 text-red-500 shrink-0" />
+                <div>
+                  <div className="font-bold text-lg">Serving Cenla Since 1984</div>
+                  <div className="text-zinc-400 text-sm">40 Years of Proven Trust</div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-4 md:justify-center pt-4 md:pt-0">
-              <Target className="w-10 h-10 text-red-500 shrink-0" />
-              <div>
-                <div className="font-bold text-lg">3rd Generation Family Owned</div>
-                <div className="text-zinc-400 text-sm">Local Roots, Expert Care</div>
+              <div className="flex items-center gap-4 md:justify-center pt-4 md:pt-0">
+                <Target className="w-10 h-10 text-red-500 shrink-0" />
+                <div>
+                  <div className="font-bold text-lg">3rd Generation Family Owned</div>
+                  <div className="text-zinc-400 text-sm">Local Roots, Expert Care</div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-4 md:justify-center pt-4 md:pt-0">
-              <Wrench className="w-10 h-10 text-red-500 shrink-0" />
-              <div>
-                <div className="font-bold text-lg">Full-Service Facility</div>
-                <div className="text-zinc-400 text-sm">Mechanical, Collision & Towing</div>
+              <div className="flex items-center gap-4 md:justify-center pt-4 md:pt-0">
+                <Wrench className="w-10 h-10 text-red-500 shrink-0" />
+                <div>
+                  <div className="font-bold text-lg">Full-Service Facility</div>
+                  <div className="text-zinc-400 text-sm">Mechanical, Collision & Towing</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Service Silos */}
       <section className="py-24 bg-zinc-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-zinc-950 mb-4">Comprehensive Auto Care</h2>
-            <p className="text-lg text-zinc-600 max-w-2xl mx-auto">One facility. Every service you need. We route you to the right experts immediately.</p>
+        <Reveal>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-zinc-950 mb-4">Comprehensive Auto Care</h2>
+              <p className="text-lg text-zinc-600 max-w-2xl mx-auto">One facility. Every service you need. We route you to the right experts immediately.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Silo 1 */}
+              <Link to="/mechanical" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+                <div className="h-48 bg-zinc-200 relative overflow-hidden">
+                  <img src="/images/mechanical.png" alt="Mechanical" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <Wrench className="absolute bottom-4 left-4 w-8 h-8 text-white" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold mb-2">Mechanical Repair</h3>
+                  <p className="text-zinc-600 text-sm mb-4 flex-1">Full diagnostics, engine repair, brakes, AC, and routine maintenance by certified techs.</p>
+                  <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                    Schedule Service <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
+                </div>
+              </Link>
+
+              {/* Silo 2 */}
+              <Link to="/collision" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+                <div className="h-48 bg-zinc-200 relative overflow-hidden">
+                  <img src="/images/collision.png" alt="Collision" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <ShieldCheck className="absolute bottom-4 left-4 w-8 h-8 text-white" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold mb-2">Collision Center</h3>
+                  <p className="text-zinc-600 text-sm mb-4 flex-1">Major body work, frame straightening, and flawless paint matching. We work with all insurance.</p>
+                  <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                    Get an Estimate <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
+                </div>
+              </Link>
+
+              {/* Silo 3 */}
+              <Link to="/towing" className="group bg-red-600 text-white border border-red-700 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+                <div className="h-48 bg-red-800 relative overflow-hidden">
+                  <img src="/images/towing.png" alt="Towing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 to-transparent" />
+                  <Truck className="absolute bottom-4 left-4 w-8 h-8 text-white" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold mb-2">24/7 Towing</h3>
+                  <p className="text-red-100 text-sm mb-4 flex-1">Stranded? We have the largest fleet in Cenla ready to dispatch immediately to your location.</p>
+                  <div className="flex items-center text-white font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                    Call Dispatch Now <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
+                </div>
+              </Link>
+
+              {/* Silo 4 */}
+              <Link to="/sales" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
+                <div className="h-48 bg-zinc-200 relative overflow-hidden">
+                  <img src="/images/sales.png" alt="Auto Sales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <CarFront className="absolute bottom-4 left-4 w-8 h-8 text-white" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold mb-2">Pre-Owned Vehicles</h3>
+                  <p className="text-zinc-600 text-sm mb-4 flex-1">Fully inspected, reliable pre-owned cars and trucks backed by our service guarantee.</p>
+                  <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                    View Inventory <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Silo 1 */}
-            <Link to="/mechanical" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
-              <div className="h-48 bg-zinc-200 relative overflow-hidden">
-                <img src="/images/mechanical.png" alt="Mechanical" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <Wrench className="absolute bottom-4 left-4 w-8 h-8 text-white" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2">Mechanical Repair</h3>
-                <p className="text-zinc-600 text-sm mb-4 flex-1">Full diagnostics, engine repair, brakes, AC, and routine maintenance by certified techs.</p>
-                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
-                  Schedule Service <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Silo 2 */}
-            <Link to="/collision" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
-              <div className="h-48 bg-zinc-200 relative overflow-hidden">
-                <img src="/images/collision.png" alt="Collision" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <ShieldCheck className="absolute bottom-4 left-4 w-8 h-8 text-white" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2">Collision Center</h3>
-                <p className="text-zinc-600 text-sm mb-4 flex-1">Major body work, frame straightening, and flawless paint matching. We work with all insurance.</p>
-                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
-                  Get an Estimate <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Silo 3 */}
-            <Link to="/towing" className="group bg-red-600 text-white border border-red-700 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
-              <div className="h-48 bg-red-800 relative overflow-hidden">
-                <img src="/images/towing.png" alt="Towing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 to-transparent" />
-                <Truck className="absolute bottom-4 left-4 w-8 h-8 text-white" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2">24/7 Towing</h3>
-                <p className="text-red-100 text-sm mb-4 flex-1">Stranded? We have the largest fleet in Cenla ready to dispatch immediately to your location.</p>
-                <div className="flex items-center text-white font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
-                  Call Dispatch Now <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Silo 4 */}
-            <Link to="/sales" className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:shadow-xl transition-all cursor-pointer flex flex-col">
-              <div className="h-48 bg-zinc-200 relative overflow-hidden">
-                <img src="/images/sales.png" alt="Auto Sales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <CarFront className="absolute bottom-4 left-4 w-8 h-8 text-white" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2">Pre-Owned Vehicles</h3>
-                <p className="text-zinc-600 text-sm mb-4 flex-1">Fully inspected, reliable pre-owned cars and trucks backed by our service guarantee.</p>
-                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
-                  View Inventory <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* The Auto Tech Legacy Section */}
       <section className="py-24 bg-zinc-900 text-white border-y border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-800 text-zinc-300 text-sm font-bold uppercase tracking-wider mb-6 rounded-sm">
-                <Target className="w-4 h-4 text-red-500" />
-                Our Legacy
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-6">40 Years.<br /><span className="text-red-500">3 Generations.</span><br />Zero Excuses.</h2>
-              <p className="text-lg text-zinc-400 mb-6 font-medium">
-                Since 1984, Auto Tech has been the backbone of Central Louisiana's automotive repair industry. We aren't a massive corporate chain, and we aren't a fly-by-night garage. We are a family-owned institution built on trust, grit, and doing the job right.
-              </p>
-              <p className="text-lg text-zinc-400 mb-8">
-                When your car breaks down or you're stranded on the side of Highway 28, you don't need a middleman. You need the experts who have been rescuing and repairing vehicles in this community for over four decades.
-              </p>
-              <div className="flex gap-4">
-                <div className="bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex-1">
-                  <div className="text-3xl font-black text-white mb-1">40+</div>
-                  <div className="text-sm text-zinc-500 font-medium uppercase">Years in Business</div>
+        <Reveal>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-800 text-zinc-300 text-sm font-bold uppercase tracking-wider mb-6 rounded-sm">
+                  <Target className="w-4 h-4 text-red-500" />
+                  Our Legacy
                 </div>
-                <div className="bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex-1">
-                  <div className="text-3xl font-black text-white mb-1">24/7</div>
-                  <div className="text-sm text-zinc-500 font-medium uppercase">Dispatch Active</div>
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-6">40 Years.<br /><span className="text-red-500">3 Generations.</span><br />Zero Excuses.</h2>
+                <p className="text-lg text-zinc-400 mb-6 font-medium">
+                  Since 1984, Auto Tech has been the backbone of Central Louisiana's automotive repair industry. We aren't a massive corporate chain, and we aren't a fly-by-night garage. We are a family-owned institution built on trust, grit, and doing the job right.
+                </p>
+                <p className="text-lg text-zinc-400 mb-8">
+                  When your car breaks down or you're stranded on the side of Highway 28, you don't need a middleman. You need the experts who have been rescuing and repairing vehicles in this community for over four decades.
+                </p>
+                <div className="flex gap-4">
+                  <div className="bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex-1">
+                    <div className="text-3xl font-black text-white mb-1">40+</div>
+                    <div className="text-sm text-zinc-500 font-medium uppercase">Years in Business</div>
+                  </div>
+                  <div className="bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex-1">
+                    <div className="text-3xl font-black text-white mb-1">24/7</div>
+                    <div className="text-sm text-zinc-500 font-medium uppercase">Emergency Response</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="relative h-[500px] rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 border border-zinc-800">
-              <img src="/images/legacy.png" alt="Mechanic Team" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent" />
+              <div className="relative">
+                <div className="absolute inset-0 bg-red-600 rounded-2xl transform translate-x-4 translate-y-4 opacity-20"></div>
+                <div className="h-[600px] w-full rounded-2xl overflow-hidden relative z-10 border border-zinc-700">
+                  <img src="/images/legacy.png" alt="Auto Tech History" className="w-full h-full object-cover grayscale opacity-80" referrerPolicy="no-referrer" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <div className="text-2xl font-black uppercase tracking-tight text-white mb-2">The Standard of Cenla</div>
+                    <div className="text-zinc-400">Accept no imitations.</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Testimonials */}
