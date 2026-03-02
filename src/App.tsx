@@ -26,6 +26,8 @@ import { SalesPage } from './pages/SalesPage';
 import { ContactPage } from './pages/ContactPage';
 import { TowingPage } from './pages/TowingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { FleetPage } from './pages/FleetPage';
+import { FinancingPage } from './pages/FinancingPage';
 import { Reveal } from './components/Reveal';
 
 function ScrollToTop() {
@@ -116,6 +118,8 @@ export default function App() {
                   <Route path="sales" element={<SalesPage />} />
                   <Route path="contact" element={<ContactPage />} />
                   <Route path="towing" element={<TowingPage />} />
+                  <Route path="fleet" element={<FleetPage />} />
+                  <Route path="financing" element={<FinancingPage />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
@@ -330,9 +334,11 @@ function Layout() {
           <Link to="/" className="text-2xl font-black tracking-tighter uppercase italic hover:text-red-500 transition-colors">
             Auto Tech
           </Link>
-          <div className="hidden md:flex items-center gap-8 font-medium text-sm">
+          <div className="hidden lg:flex items-center gap-6 font-medium text-sm">
             <Link to="/mechanical" className="hover:text-red-500 transition-colors">Mechanical</Link>
             <Link to="/collision" className="hover:text-red-500 transition-colors">Collision</Link>
+            <Link to="/fleet" className="hover:text-red-500 transition-colors">Fleet Services</Link>
+            <Link to="/financing" className="hover:text-red-500 transition-colors">Financing</Link>
             <Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link>
             <Link to="/towing" className="hover:text-red-500 transition-colors text-red-400 font-bold uppercase tracking-wider">Towing</Link>
             <Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link>
@@ -368,6 +374,8 @@ function Layout() {
               <div className="px-6 py-4 flex flex-col gap-4">
                 <Link to="/mechanical" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Mechanical</Link>
                 <Link to="/collision" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Collision</Link>
+                <Link to="/fleet" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Fleet Services</Link>
+                <Link to="/financing" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Financing</Link>
                 <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">About Legacy</Link>
                 <Link to="/towing" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-bold text-red-500 uppercase tracking-wider">Towing</Link>
                 <Link to="/sales" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Auto Sales</Link>
@@ -406,6 +414,7 @@ function Layout() {
               <ul className="space-y-2">
                 <li><Link to="/mechanical" className="hover:text-red-500 transition-colors">Mechanical</Link></li>
                 <li><Link to="/collision" className="hover:text-red-500 transition-colors">Collision Repair</Link></li>
+                <li><Link to="/fleet" className="hover:text-red-500 transition-colors">Fleet Services</Link></li>
                 <li><Link to="/towing" className="hover:text-red-500 transition-colors">24/7 Towing</Link></li>
                 <li><Link to="/sales" className="hover:text-red-500 transition-colors">Auto Sales</Link></li>
               </ul>
@@ -414,6 +423,7 @@ function Layout() {
               <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Company</h4>
               <ul className="space-y-2">
                 <li><Link to="/about" className="hover:text-red-500 transition-colors">About Legacy</Link></li>
+                <li><Link to="/financing" className="hover:text-red-500 transition-colors">Financing Options</Link></li>
                 <li><Link to="/contact" className="hover:text-red-500 transition-colors">Contact Us</Link></li>
                 <li><Link to="#" className="hover:text-red-500 transition-colors">Privacy Policy</Link></li>
               </ul>
