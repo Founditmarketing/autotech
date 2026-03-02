@@ -32,7 +32,7 @@ export function SalesPage() {
             </div>
 
             {/* Inventory Filters */}
-            <div className="bg-white border-b border-zinc-200 sticky top-16 md:top-auto z-40 shadow-sm">
+            <div className="bg-white border-b border-zinc-200 sticky top-[73px] z-30 shadow-sm">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row gap-4 items-center justify-between">
                     <div className="relative w-full md:w-96">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-5 h-5" />

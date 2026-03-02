@@ -341,14 +341,14 @@ function Layout() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden relative z-40 w-full"
+              className="md:hidden bg-zinc-900 border-b border-zinc-800 overflow-hidden absolute top-full left-0 w-full z-50 shadow-2xl"
             >
               <div className="px-6 py-4 flex flex-col gap-4">
-                <Link to="/mechanical" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Mechanical</Link>
-                <Link to="/collision" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Collision</Link>
-                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">About Legacy</Link>
-                <Link to="/towing" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-red-400 uppercase tracking-wider">Towing</Link>
-                <Link to="/sales" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium hover:text-red-500 transition-colors">Auto Sales</Link>
+                <Link to="/mechanical" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Mechanical</Link>
+                <Link to="/collision" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Collision</Link>
+                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">About Legacy</Link>
+                <Link to="/towing" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-bold text-red-500 uppercase tracking-wider">Towing</Link>
+                <Link to="/sales" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-white hover:text-red-500 transition-colors">Auto Sales</Link>
                 <div className="pt-4 mt-2 border-t border-zinc-800 flex flex-col gap-4">
                   <div className="flex justify-between items-center">
                     <span className="text-zinc-400 font-semibold uppercase tracking-wider text-xs">24/7 Dispatch</span>
