@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function CollisionPage() {
     return (
-        <div className="pt-24 bg-zinc-50 min-h-screen">
+        <div className="bg-zinc-50 min-h-screen">
             {/* Header */}
             <div className="bg-zinc-950 text-white py-24 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20">

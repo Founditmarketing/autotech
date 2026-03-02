@@ -3,7 +3,7 @@ import { MapPin, PhoneCall, Clock, Mail, MessageSquare } from 'lucide-react';
 
 export function ContactPage() {
     return (
-        <div className="pt-24 bg-zinc-50 min-h-screen">
+        <div className="bg-zinc-50 min-h-screen">
             {/* Header */}
             <div className="bg-zinc-950 text-white py-20 relative overflow-hidden">
                 <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">

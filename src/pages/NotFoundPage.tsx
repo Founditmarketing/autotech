@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function NotFoundPage() {
     return (
-        <div className="pt-24 bg-zinc-950 min-h-[80vh] flex flex-col items-center justify-center relative overflow-hidden text-center px-6">
+        <div className="bg-zinc-950 min-h-[80vh] flex flex-col items-center justify-center relative overflow-hidden text-center px-6">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
                 <img src="/images/towing.png" alt="Broken Down Vehicle" className="w-full h-full object-cover grayscale" />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent" />

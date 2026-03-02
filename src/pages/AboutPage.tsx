@@ -3,7 +3,7 @@ import { Target, ShieldCheck, MapPin, Clock, Users } from 'lucide-react';
 
 export function AboutPage() {
     return (
-        <div className="pt-24 bg-zinc-50 min-h-screen">
+        <div className="bg-zinc-50 min-h-screen">
             {/* Hero */}
             <div className="relative bg-zinc-950 text-white py-32 overflow-hidden">
                 <div className="absolute inset-0 opacity-30">

@@ -624,7 +624,7 @@ function WireframeView() {
               <div className="relative">
                 <div className="absolute inset-0 bg-red-600 rounded-2xl transform translate-x-4 translate-y-4 opacity-20"></div>
                 <div className="h-[600px] w-full rounded-2xl overflow-hidden relative z-10 border border-zinc-700">
-                  <img src="/images/legacy.png" alt="Auto Tech History" className="w-full h-full object-cover grayscale opacity-80" referrerPolicy="no-referrer" />
+                  <img src="/images/legacy-vintage.png" alt="Auto Tech History" className="w-full h-full object-cover grayscale opacity-80" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
                   <div className="absolute bottom-8 left-8 right-8">
                     <div className="text-2xl font-black uppercase tracking-tight text-white mb-2">The Standard of Cenla</div>
@@ -638,89 +638,95 @@ function WireframeView() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-zinc-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-zinc-950 mb-4">Don't Take Our Word For It</h2>
-            <p className="text-lg text-zinc-600 max-w-2xl mx-auto">See why Central Louisiana trusts Auto Tech with their most valuable assets.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: 'Michael R.', role: 'Local Resident', text: 'Stranded at 2 AM on a Sunday. Auto Tech dispatch answered immediately and had a tow truck to me in 20 minutes. Incredible service.' },
-              { name: 'Sarah T.', role: 'Business Owner', text: 'They handle our entire commercial fleet. Honest pricing, no surprise fees, and they always get the mechanical work done on time.' },
-              { name: 'David W.', role: 'Recent Customer', text: 'Had major front-end collision damage. The collision center restored my truck so perfectly you can\'t even tell it was in a wreck. 10/10.' }
-            ].map((testimonial, i) => (
-              <div key={i} className="bg-white border border-zinc-200 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex text-yellow-500 mb-4">
-                  {[...Array(5)].map((_, j) => (
-                    <svg key={j} className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                  ))}
+      <section className="py-24 bg-zinc-50 border-t border-zinc-200">
+        <Reveal>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-zinc-950 mb-4">Don't Take Our Word For It</h2>
+              <p className="text-lg text-zinc-600 max-w-2xl mx-auto">Real reviews from the people and businesses who rely on us every day across Central Louisiana.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { name: 'Marcus D.', role: 'Fleet Manager, Local Logistics', text: 'When you are managing 40+ transit vans, downtime is a death sentence. Auto Tech treats our fleet like it is their own. Their priority bay access and heavy line mechanical work has saved us tens of thousands.' },
+                { name: 'Sarah L.', role: 'Cenla Resident', text: 'My transmission blew on Highway 28 at midnight with my kids in the car. Their 24/7 dispatch answered on the first ring, had a tow truck there in 15 minutes, and financed the rebuild. Total lifesavers.' },
+                { name: 'James W.', role: 'Small Business Owner', text: 'I hit a deer returning from Shreveport. The collision center here didn\'t just fix the front end—they fought the insurance company to make sure OEM parts were used. My truck looks better than the day I bought it.' }
+              ].map((testimonial, i) => (
+                <div key={i} className="bg-white border text-left border-zinc-200 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300">
+                  <div className="flex text-yellow-500 mb-6 gap-1">
+                    {[...Array(5)].map((_, j) => (
+                      <svg key={j} className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    ))}
+                  </div>
+                  <p className="text-zinc-600 mb-8 font-medium leading-relaxed italic">"{testimonial.text}"</p>
+                  <div>
+                    <div className="font-bold text-zinc-950 uppercase tracking-tight">{testimonial.name}</div>
+                    <div className="text-sm text-red-600 font-bold uppercase tracking-wider">{testimonial.role}</div>
+                  </div>
                 </div>
-                <p className="text-zinc-600 mb-6 italic">"{testimonial.text}"</p>
-                <div className="font-bold text-zinc-950">{testimonial.name}</div>
-                <div className="text-sm text-zinc-500">{testimonial.role}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Location & Contact Section */}
       <section className="py-24 bg-zinc-950 text-white border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-black uppercase tracking-tight mb-6">Find Our Shop</h2>
-              <p className="text-zinc-400 mb-8 max-w-md">Located conveniently in the heart of Cenla, equipped to handle any of your vehicle's needs.</p>
+        <Reveal>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-4xl font-black uppercase tracking-tight mb-6">Find Our Shop</h2>
+                <p className="text-zinc-400 mb-8 max-w-md">Located conveniently in the heart of Cenla, equipped to handle any of your vehicle's needs.</p>
 
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
-                    <MapPin className="w-6 h-6 text-red-500" />
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
+                      <MapPin className="w-6 h-6 text-red-500" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg">Auto Tech Facilities</h4>
+                      <p className="text-zinc-400 mt-1">4624 Highway 28 East<br />Pineville, LA 71360</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-lg">Auto Tech Facilities</h4>
-                    <p className="text-zinc-400 mt-1">4624 Highway 28 East<br />Pineville, LA 71360</p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
-                    <PhoneCall className="w-6 h-6 text-red-500" />
+                  <div className="flex items-start gap-4">
+                    <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
+                      <PhoneCall className="w-6 h-6 text-red-500" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg">Contact Us</h4>
+                      <p className="text-zinc-400 mt-1">Main: (318) 555-0100<br />24/7 Towing: (318) 555-0198</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-lg">Contact Us</h4>
-                    <p className="text-zinc-400 mt-1">Main: (318) 555-0100<br />24/7 Towing: (318) 555-0198</p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
-                    <Clock className="w-6 h-6 text-red-500" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg">Hours of Operation</h4>
-                    <p className="text-zinc-400 mt-1">Mon - Fri: 8:00 AM - 5:00 PM<br />Towing: 24/7/365</p>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-red-600/10 p-3 rounded-lg border border-red-600/20 shrink-0">
+                      <Clock className="w-6 h-6 text-red-500" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg">Hours of Operation</h4>
+                      <p className="text-zinc-400 mt-1">Mon - Fri: 8:00 AM - 5:00 PM<br />Towing: 24/7/365</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Interactive Map */}
-            <div className="relative h-[400px] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 group">
-              <iframe
-                src="https://maps.google.com/maps?q=Auto%20Tech%204624%20Highway%2028%20East%20Pineville%20LA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale-[0.5] contrast-125 opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-              ></iframe>
+              {/* Interactive Map */}
+              <div className="relative h-[400px] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 group">
+                <iframe
+                  src="https://maps.google.com/maps?q=Auto%20Tech%204624%20Highway%2028%20East%20Pineville%20LA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="grayscale-[0.5] contrast-125 opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                ></iframe>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );

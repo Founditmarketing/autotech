@@ -3,7 +3,7 @@ import { PhoneCall, Truck, MapPin, Search, ShieldCheck, AlertTriangle } from 'lu
 
 export function TowingPage() {
     return (
-        <div className="pt-24 bg-zinc-50 min-h-screen">
+        <div className="bg-zinc-50 min-h-screen">
             {/* Emergency Hero */}
             <div className="bg-red-600 text-white py-24 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20 mix-blend-multiply">
